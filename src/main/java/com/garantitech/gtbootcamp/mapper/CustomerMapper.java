@@ -1,7 +1,9 @@
 package com.garantitech.gtbootcamp.mapper;
 
+import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
+import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,4 +22,8 @@ public interface CustomerMapper {
   Customer convertToCustomer(CustomerSaveRequestDTOClass customerSaveRequestDTO);
 
   CustomerDTOClass convertToCustomerDTOClass(Customer customer);
+
+  Customer convertToCustomer(CustomerSaveRequestDTO requestDTO);
+
+  CustomerDTO convertToCustomerDTO(Customer customer);
 }

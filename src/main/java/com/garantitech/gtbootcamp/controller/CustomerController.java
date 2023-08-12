@@ -1,8 +1,10 @@
 package com.garantitech.gtbootcamp.controller;
 
 import com.garantitech.gtbootcamp.contract.CustomerControllerContract;
+import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
+import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +22,15 @@ public class CustomerController {
 
   private final CustomerControllerContract contract;
 
+  //@PostMapping
+  //public CustomerDTOClass save1(@RequestBody CustomerSaveRequestDTOClass customerSaveRequestDTO) {
+  //  CustomerDTOClass customerDTO = contract.save1(customerSaveRequestDTO);
+  //  return customerDTO;
+  //}
+
   @PostMapping
-  public CustomerDTOClass save1(@RequestBody CustomerSaveRequestDTOClass customerSaveRequestDTO) {
-    CustomerDTOClass customerDTO = contract.save1(customerSaveRequestDTO);
+  public CustomerDTO save(@RequestBody CustomerSaveRequestDTO customerSaveRequestDTO) {
+    CustomerDTO customerDTO = contract.save(customerSaveRequestDTO);
     return customerDTO;
   }
 }
