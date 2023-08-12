@@ -5,6 +5,7 @@ import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -26,4 +27,6 @@ public interface CustomerMapper {
   Customer convertToCustomer(CustomerSaveRequestDTO requestDTO);
 
   CustomerDTO convertToCustomerDTO(Customer customer);
+
+  List<CustomerDTO> convertToCustomerDTOList(List<Customer> customerList);
 }

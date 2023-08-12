@@ -4,9 +4,11 @@ import com.garantitech.gtbootcamp.contract.CustomerControllerContract;
 import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.general.RestResponse;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,4 +41,10 @@ public class CustomerController {
   //  CustomerDTO customerDTO = contract.save(customerSaveRequestDTO);
   //  return ResponseEntity.ok(RestResponse.of(customerDTO));
   //}
+
+  @GetMapping
+  public ResponseEntity<RestResponse<List<CustomerDTO>>> findAll(){
+    List<CustomerDTO> customerDTOList = contract.findAll();
+    return ResponseEntity.ok(RestResponse.of(customerDTOList));
+  }
 }

@@ -5,6 +5,7 @@ import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
+import java.util.List;
 
 /**
  * @author bahadirmemis
@@ -16,4 +17,6 @@ public interface CustomerControllerContract {
   CustomerDTOClass save1(CustomerSaveRequestDTOClass customerSaveRequestDTO);
 
   CustomerDTO save(CustomerSaveRequestDTO customerSaveRequestDTO);
+
+  List<CustomerDTO> findAll();
 }
