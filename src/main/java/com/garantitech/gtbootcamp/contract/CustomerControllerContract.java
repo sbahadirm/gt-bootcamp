@@ -3,6 +3,7 @@ package com.garantitech.gtbootcamp.contract;
 import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
+import com.garantitech.gtbootcamp.request.CustomerChangePasswordRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
 import com.garantitech.gtbootcamp.request.CustomerUpdateRequestDTO;
@@ -28,4 +29,6 @@ public interface CustomerControllerContract {
   CustomerDTO deactivate(Long id);
 
   void delete(Long id);
+
+  void changePassword(Long id, CustomerChangePasswordRequestDTO dto);
 }

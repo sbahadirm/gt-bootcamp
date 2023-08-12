@@ -9,6 +9,7 @@ import com.garantitech.gtbootcamp.enums.EnumStatus;
 import com.garantitech.gtbootcamp.exceptions.BusinessException;
 import com.garantitech.gtbootcamp.exceptions.CustomerErrorMessages;
 import com.garantitech.gtbootcamp.mapper.CustomerMapper;
+import com.garantitech.gtbootcamp.request.CustomerChangePasswordRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
 import com.garantitech.gtbootcamp.request.CustomerUpdateRequestDTO;
@@ -99,5 +100,22 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
   @Override
   public void delete(Long id) {
     customerEntityService.delete(id);
+  }
+
+  @Override
+  public void changePassword(Long id, CustomerChangePasswordRequestDTO dto) {
+
+    if (!dto.newPassword().equals(dto.newPasswordAgaing())){
+      throw new BusinessException(CustomerErrorMessages.PASSWORDS_DOES_NOT_MATCH);
+    }
+
+    Customer customer = customerEntityService.findByIdWithControl(id);
+
+    if (!customer.getPassword().equals(dto.oldPassword())){
+      throw new BusinessException(CustomerErrorMessages.WRONG_OLD_PASSWORD);
+    }
+
+    customer.setPassword(dto.newPassword());
+    customerEntityService.save(customer);
   }
 }

@@ -3,6 +3,7 @@ package com.garantitech.gtbootcamp.controller;
 import com.garantitech.gtbootcamp.contract.CustomerControllerContract;
 import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.general.RestResponse;
+import com.garantitech.gtbootcamp.request.CustomerChangePasswordRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerUpdateRequestDTO;
 import java.util.List;
@@ -70,6 +71,13 @@ public class CustomerController {
   public ResponseEntity<RestResponse<CustomerDTO>> deactivate(@PathVariable Long id){
     CustomerDTO customerDTO = contract.deactivate(id);
     return ResponseEntity.ok(RestResponse.of(customerDTO));
+  }
+
+  @PatchMapping("/{id}/password")
+  public ResponseEntity<RestResponse<Object>> changePassword(@PathVariable Long id,
+                                                                  @RequestBody CustomerChangePasswordRequestDTO dto){
+    contract.changePassword(id, dto);
+    return ResponseEntity.ok(RestResponse.empty());
   }
 
   @DeleteMapping("/{id}")
