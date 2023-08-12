@@ -5,6 +5,7 @@ import com.garantitech.gtbootcamp.converter.CustomerConverter;
 import com.garantitech.gtbootcamp.dto.CustomerDTO;
 import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
+import com.garantitech.gtbootcamp.enums.EnumStatus;
 import com.garantitech.gtbootcamp.mapper.CustomerMapper;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
@@ -75,6 +76,16 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
     Customer customer = customerEntityService.findByIdWithControl(dto.id());
     CustomerMapper.INSTANCE.updateCustomer(dto, customer);
 
+    customer = customerEntityService.save(customer);
+    CustomerDTO customerDTO = CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
+    return customerDTO;
+  }
+
+  @Override
+  public CustomerDTO deactivate(Long id) {
+
+    Customer customer = customerEntityService.findByIdWithControl(id);
+    customer.setStatus(EnumStatus.PASSIVE);
     customer = customerEntityService.save(customer);
     CustomerDTO customerDTO = CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
     return customerDTO;

@@ -24,4 +24,6 @@ public interface CustomerControllerContract {
   CustomerDTO findById(Long id);
 
   CustomerDTO update(CustomerUpdateRequestDTO dto);
+
+  CustomerDTO deactivate(Long id);
 }

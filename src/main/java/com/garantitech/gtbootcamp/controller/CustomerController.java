@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -61,6 +62,12 @@ public class CustomerController {
   public ResponseEntity<RestResponse<CustomerDTO>> update(@PathVariable Long id,
                                                           @RequestBody CustomerUpdateRequestDTO dto) {
     CustomerDTO customerDTO = contract.update(dto);
+    return ResponseEntity.ok(RestResponse.of(customerDTO));
+  }
+
+  @PatchMapping("/{id}/deactivate")
+  public ResponseEntity<RestResponse<CustomerDTO>> deactivate(@PathVariable Long id){
+    CustomerDTO customerDTO = contract.deactivate(id);
     return ResponseEntity.ok(RestResponse.of(customerDTO));
   }
 }
