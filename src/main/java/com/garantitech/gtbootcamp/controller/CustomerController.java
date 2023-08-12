@@ -2,6 +2,7 @@ package com.garantitech.gtbootcamp.controller;
 
 import com.garantitech.gtbootcamp.contract.CustomerControllerContract;
 import com.garantitech.gtbootcamp.dto.CustomerDTO;
+import com.garantitech.gtbootcamp.general.RestResponse;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,14 @@ public class CustomerController {
   //}
 
   @PostMapping
-  public ResponseEntity<CustomerDTO> save(@RequestBody CustomerSaveRequestDTO customerSaveRequestDTO) {
+  public ResponseEntity<RestResponse<CustomerDTO>> save(@RequestBody CustomerSaveRequestDTO customerSaveRequestDTO) {
     CustomerDTO customerDTO = contract.save(customerSaveRequestDTO);
-    return new ResponseEntity<>(customerDTO, HttpStatus.CREATED);
+    return new ResponseEntity<>(RestResponse.of(customerDTO), HttpStatus.CREATED);
   }
+
+  //@PostMapping
+  //public ResponseEntity<RestResponse<CustomerDTO>> save2(@RequestBody CustomerSaveRequestDTO customerSaveRequestDTO) {
+  //  CustomerDTO customerDTO = contract.save(customerSaveRequestDTO);
+  //  return ResponseEntity.ok(RestResponse.of(customerDTO));
+  //}
 }
