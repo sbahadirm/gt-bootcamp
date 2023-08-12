@@ -1,5 +1,6 @@
 package com.garantitech.gtbootcamp.general;
 
+import com.garantitech.gtbootcamp.exceptions.CustomerNotFoundException;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     RestResponse<GenericErrorMessage>
         genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
     return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler
+  public final ResponseEntity<Object> handleNoSuchElementExceptions(CustomerNotFoundException e, WebRequest request){
+    RestResponse<GenericErrorMessage> genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
+    return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler

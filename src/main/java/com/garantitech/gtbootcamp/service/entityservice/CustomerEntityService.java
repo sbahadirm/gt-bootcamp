@@ -1,6 +1,8 @@
 package com.garantitech.gtbootcamp.service.entityservice;
 
 import com.garantitech.gtbootcamp.entity.Customer;
+import com.garantitech.gtbootcamp.exceptions.CustomerErrorMessages;
+import com.garantitech.gtbootcamp.exceptions.CustomerNotFoundException;
 import com.garantitech.gtbootcamp.general.BaseAdditionalFields;
 import com.garantitech.gtbootcamp.repository.CustomerRepository;
 import java.time.LocalDateTime;
@@ -47,7 +49,8 @@ public class CustomerEntityService {
 
   public Customer findByIdWithControl(Long id){
     Optional<Customer> customerOptional = customerRepository.findById(id);
-    Customer customer = customerOptional.orElseThrow();
+    Customer customer = customerOptional
+        .orElseThrow(() -> new CustomerNotFoundException(CustomerErrorMessages.NOT_FOUND));
     return customer;
   }
 
