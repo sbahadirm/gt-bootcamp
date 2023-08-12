@@ -1,6 +1,7 @@
 package com.garantitech.gtbootcamp.entity;
 
 import com.garantitech.gtbootcamp.enums.EnumStatus;
+import com.garantitech.gtbootcamp.general.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,13 +19,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 1. id,
+ * 2. create_date
+ * 3. update_date
+ * 4. created_by
+ * 5. updated_by
+ *
+ *
  * @author bahadirmemis
  */
 @Getter
 @Setter
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
+public class Customer extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Customer")
