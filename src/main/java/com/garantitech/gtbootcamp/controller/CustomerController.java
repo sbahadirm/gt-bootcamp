@@ -1,10 +1,8 @@
 package com.garantitech.gtbootcamp.controller;
 
 import com.garantitech.gtbootcamp.entity.Customer;
-import com.garantitech.gtbootcamp.repository.CustomerRepository;
 import com.garantitech.gtbootcamp.service.entityservice.CustomerEntityService;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,7 +49,8 @@ public class CustomerController {
 
   @GetMapping("/{id}")
   public Customer getCustomerById(@PathVariable Long id) {
-    Customer customer = customerEntityService.findById(id);
+    Customer customer = customerEntityService.findByIdWithControl(id);
+
     return customer;
   }
 
