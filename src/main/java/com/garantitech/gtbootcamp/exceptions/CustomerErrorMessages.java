@@ -5,7 +5,9 @@ package com.garantitech.gtbootcamp.exceptions;
  */
 public enum CustomerErrorMessages implements BaseErrorMessage{
 
-  NOT_FOUND("Customer not found!");
+  NOT_FOUND("Customer not found!"),
+  CUSTOMER_ALREADY_PASSIVE("Customer is already passive!")
+  ;
 
   private String message;
 

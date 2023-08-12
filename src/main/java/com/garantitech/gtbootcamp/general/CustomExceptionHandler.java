@@ -1,5 +1,6 @@
 package com.garantitech.gtbootcamp.general;
 
+import com.garantitech.gtbootcamp.exceptions.BusinessException;
 import com.garantitech.gtbootcamp.exceptions.CustomerNotFoundException;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
@@ -27,9 +28,26 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler
-  public final ResponseEntity<Object> handleNoSuchElementExceptions(CustomerNotFoundException e, WebRequest request){
+  public final ResponseEntity<Object> handleCustomerNotFoundExceptions(CustomerNotFoundException e, WebRequest request){
     RestResponse<GenericErrorMessage> genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
     return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler
+  public final ResponseEntity<Object> handleBusinessExceptions(BusinessException e, WebRequest request){
+    RestResponse<GenericErrorMessage>
+        genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
+    return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.NOT_FOUND);
+  }
+
+  private static RestResponse<GenericErrorMessage> getGenericErrorMessageRestResponse(BusinessException e,
+                                                                                      WebRequest request) {
+    String message = e.getBaseErrorMessage().getMessage();
+    String description = request.getDescription(false);
+
+    GenericErrorMessage genericErrorMessage = new GenericErrorMessage(LocalDateTime.now(), message, description);
+    RestResponse<GenericErrorMessage> genericErrorMessageRestResponse = RestResponse.error(genericErrorMessage);
+    return genericErrorMessageRestResponse;
   }
 
   @ExceptionHandler
