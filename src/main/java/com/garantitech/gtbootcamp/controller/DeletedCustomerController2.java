@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 3 farklı injection şekli var.
@@ -19,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author bahadirmemis
  */
-@RestController
+//@RestController
 @RequestMapping("/api/v1/customers")
-public class CustomerController {
+public class DeletedCustomerController2 {
 
   //@Autowired // field inj.
   //private CustomerRepository customerRepository;
@@ -37,7 +36,7 @@ public class CustomerController {
 
   private CustomerEntityService customerEntityService;
 
-  public CustomerController(CustomerEntityService customerEntityService) {
+  public DeletedCustomerController2(CustomerEntityService customerEntityService) {
     this.customerEntityService = customerEntityService;
   }
 
