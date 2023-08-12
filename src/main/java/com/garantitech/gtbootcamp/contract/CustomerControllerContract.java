@@ -19,4 +19,6 @@ public interface CustomerControllerContract {
   CustomerDTO save(CustomerSaveRequestDTO customerSaveRequestDTO);
 
   List<CustomerDTO> findAll();
+
+  CustomerDTO findById(Long id);
 }

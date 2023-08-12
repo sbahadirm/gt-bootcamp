@@ -9,7 +9,6 @@ import com.garantitech.gtbootcamp.mapper.CustomerMapper;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
 import com.garantitech.gtbootcamp.service.entityservice.CustomerEntityService;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -60,5 +59,12 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
     List<CustomerDTO> customerDTOList = CustomerMapper.INSTANCE.convertToCustomerDTOList(customerList);
 
     return customerDTOList;
+  }
+
+  @Override
+  public CustomerDTO findById(Long id) {
+    Customer customer = customerEntityService.findByIdWithControl(id);
+    CustomerDTO customerDTO = CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
+    return customerDTO;
   }
 }
