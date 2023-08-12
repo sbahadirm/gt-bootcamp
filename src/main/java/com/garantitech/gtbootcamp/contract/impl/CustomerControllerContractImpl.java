@@ -8,6 +8,7 @@ import com.garantitech.gtbootcamp.entity.Customer;
 import com.garantitech.gtbootcamp.mapper.CustomerMapper;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
+import com.garantitech.gtbootcamp.request.CustomerUpdateRequestDTO;
 import com.garantitech.gtbootcamp.service.entityservice.CustomerEntityService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,17 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
   @Override
   public CustomerDTO findById(Long id) {
     Customer customer = customerEntityService.findByIdWithControl(id);
+    CustomerDTO customerDTO = CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
+    return customerDTO;
+  }
+
+  @Override
+  public CustomerDTO update(CustomerUpdateRequestDTO dto) {
+
+    Customer customer = customerEntityService.findByIdWithControl(dto.id());
+    CustomerMapper.INSTANCE.updateCustomer(dto, customer);
+
+    customer = customerEntityService.save(customer);
     CustomerDTO customerDTO = CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
     return customerDTO;
   }

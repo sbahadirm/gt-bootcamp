@@ -5,9 +5,11 @@ import com.garantitech.gtbootcamp.dto.CustomerDTOClass;
 import com.garantitech.gtbootcamp.entity.Customer;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTO;
 import com.garantitech.gtbootcamp.request.CustomerSaveRequestDTOClass;
+import com.garantitech.gtbootcamp.request.CustomerUpdateRequestDTO;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -29,4 +31,7 @@ public interface CustomerMapper {
   CustomerDTO convertToCustomerDTO(Customer customer);
 
   List<CustomerDTO> convertToCustomerDTOList(List<Customer> customerList);
+
+  void updateCustomer(CustomerUpdateRequestDTO dto, @MappingTarget Customer customer);
+
 }
